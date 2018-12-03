@@ -1,0 +1,8 @@
+F 16 Falcon,aircraft,500000,30+,A small and cheap Figter Aircraft for all purposes
+F 15 Eagle,aircraft,750000,31+,A more advances air superiority fighter
+F 18 Hornet,aircraft,1000000,32+,A multirole fighter with an air-to-surface focus
+F 22 Raptor,aircraft,5000000,90+,A modern stealth air superiority fighter
+Rafale,aircraft,1500000,40+,European small multi role fighter
+Aircraft Staging Platform,age,Basic,no,20000,SP,A platform set for standard maintenance tasks at various aircraft
+Hydraulics Testcart,age,Testcarts,OH,100000,AHT-,A testcart to power aircraft hydraulics without operating the engines
+Basic Toolset,age,Basic,no,5000,T-,Basic Toolset for any kind of work on aircraft
