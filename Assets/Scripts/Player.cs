@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-
+    // Player owns it all
     public Text moneyText;
     public GameObject messageBroker;
     public GameObject taskBroker;
