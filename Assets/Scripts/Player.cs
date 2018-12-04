@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
         clockScript = clock.GetComponent<Clock>();
 
         UpdateMoneyDisplay();
+        TestInit();
 	}
 	
 	// Update is called once per frame
@@ -225,5 +226,18 @@ public class Player : MonoBehaviour {
             }
         }
         return "";
+    }
+
+    private void TestInit()
+    {
+
+        jetInventory.Add(jetBrokerScript.Buy("F 16 Falcon", jetBrokerScript.GetTailNumberPrefix("F 16 Falcon") + "01"));
+        jetInventory.Add(jetBrokerScript.Buy("F 16 Falcon", jetBrokerScript.GetTailNumberPrefix("F 16 Falcon") + "02"));
+        jetInventory.Add(jetBrokerScript.Buy("F 15 Eagle", jetBrokerScript.GetTailNumberPrefix("F 15 Eagle") + "01"));
+
+        taskBrokerScript.AssignFlightTask("BFM Training", new TimeValue(30, 14, 1, 1, 2018), 60, jetInventory[0]);
+        taskBrokerScript.AssignFlightTask("Flying Display", new TimeValue(0, 6, 1, 1, 2018), 90, jetInventory[1]);
+        taskBrokerScript.AssignFlightTask("BFM Training", new TimeValue(30, 14, 1, 1, 2018), 60, jetInventory[1]);
+
     }
 }

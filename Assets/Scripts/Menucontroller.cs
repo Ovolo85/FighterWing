@@ -263,6 +263,7 @@ public class Menucontroller : MonoBehaviour {
                 {
                     taskBuffer = Instantiate(task);
                     taskBuffer.transform.SetParent(menuFPScrollArea.transform, false);
+                    taskBuffer.transform.Find("Name").GetComponent<Text>().text = flight.Taskname;
                     taskBuffer.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * 160 + 50, -flight.StartTime.Hour * 60 - flight.StartTime.Minute -50);
                     taskBuffer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, flight.OriginalDuration);
                 }
