@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     // Player owns it all
     // Testing GIT a little
+    // next GIT Test
     public Text moneyText;
     public GameObject messageBroker;
     public GameObject taskBroker;
