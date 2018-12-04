@@ -64,4 +64,19 @@ public class TaskBroker : MonoBehaviour {
         }
         return result;
     }
+
+    public List<TopTask> GetFlightsForJet (string tn)
+    {
+        List<TopTask> result = new List<TopTask>();
+
+        foreach (var task in taskList)
+        {
+            if (task.TaskType == "Flight" && task.AssignedJet.GetComponent<Jet>().Tailnumber == tn)
+            {
+                result.Add(task);
+            }
+        }
+
+        return result;
+    }
 }

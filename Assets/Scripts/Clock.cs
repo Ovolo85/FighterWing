@@ -75,4 +75,9 @@ public class Clock : MonoBehaviour {
         timespeed = speed;
         speedButton[timespeed + 1].GetComponent<Image>().color = Color.green;
     }
+
+    public bool CheckIfToday(TimeValue date)
+    {
+        return date.Day == days && date.Month == months && date.Year == years;
+    }
 }

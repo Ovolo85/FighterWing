@@ -35,12 +35,13 @@ public class Menucontroller : MonoBehaviour {
 
     // Privates
     private Player player;
+    private Clock clock;
     private GameObject[] displayedItems = null;
-
-
+    
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        clock = GameObject.FindGameObjectWithTag("Clock").GetComponent<Clock>();
         HideMenu();
     }
 	
@@ -156,7 +157,7 @@ public class Menucontroller : MonoBehaviour {
             displayedItems = new GameObject[showList.Count];
 
             menuShowScrollArea.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, showList.Count * 110 + 10);
-            menuShowScrollArea.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50);
+            
             for (int i = 0; i < showList.Count; i++)
             {
                 displayedItems[i] = Instantiate(assetForShow);
@@ -207,7 +208,10 @@ public class Menucontroller : MonoBehaviour {
 
     public void UpdateFP()
     {
-        
+        GameObject taskBuffer;
+        List<GameObject> flightsToShow = new List<GameObject>();
+        List<TopTask> flightList = new List<TopTask>();
+
         menuFPDropDown.ClearOptions();
         menuFPDropDown.AddOptions(new List<string> { "All" });
         menuFPDropDown.AddOptions(player.GetTypesInService());
@@ -252,12 +256,19 @@ public class Menucontroller : MonoBehaviour {
 
             displayedItems[i].transform.Find("TN").GetComponent<Text>().text = jetsToShow[i];
             displayedItems[i].transform.Find("Type").GetComponent<Text>().text = player.GetTypeForTailnumber(jetsToShow[i]);
-
-            
+            flightList.AddRange(player.GetTasksOfTypeForTailNumber("Flight", jetsToShow[i]));
+            foreach (var flight in flightList)
+            {
+                if(clock.CheckIfToday(flight.StartTime))
+                {
+                    taskBuffer = Instantiate(task);
+                    taskBuffer.transform.SetParent(menuFPScrollArea.transform, false);
+                    taskBuffer.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * 160 + 50, -flight.StartTime.Hour * 60 - flight.StartTime.Minute -50);
+                    taskBuffer.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, flight.OriginalDuration);
+                }
+            }
+            flightList.Clear();
         }
-        
-        print(menuFPScrollArea.GetComponent<RectTransform>().rect.width);
-        
         
     }
 }

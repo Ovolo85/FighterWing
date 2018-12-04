@@ -5,7 +5,7 @@ using UnityEngine;
 public class TopTask {
 
     public string Taskname { get; private set; }
-    private TimeValue startTime;
+    public TimeValue StartTime { get; private set; }
     public int Duration { get; private set; }
     public int OriginalDuration { get; private set; }
     public string TaskType { get; private set; }
@@ -16,7 +16,7 @@ public class TopTask {
     public TopTask(string n, string tt, TimeValue st, int d, GameObject jet)
     {
         this.Taskname = n;
-        this.startTime = st;
+        this.StartTime = st;
         this.Duration = d;
         this.OriginalDuration = d;
         this.TaskType = tt;

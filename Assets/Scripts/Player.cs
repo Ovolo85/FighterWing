@@ -5,9 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    // Player owns it all
-    // Testing GIT a little
-    // next GIT Test
+    
     public Text moneyText;
     public GameObject messageBroker;
     public GameObject taskBroker;
@@ -204,10 +202,16 @@ public class Player : MonoBehaviour {
         return result;
     }
 
-    public List<TopTask> GetFlightTasksForTailNumber (string tn)
+    public List<TopTask> GetTasksOfTypeForTailNumber (string type, string tn)
     {
         List<TopTask> result = new List<TopTask>();
-
+        switch (type)
+        {
+            case "Flight":
+            result = taskBrokerScript.GetFlightsForJet(tn);
+            break;
+        }
+        
         return result;
     }
 
