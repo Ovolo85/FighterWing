@@ -19,6 +19,7 @@ public class Clock : MonoBehaviour {
     private int days = 1;
     private int months = 1;
     private int years = 2018;
+    private int[] lenghtOfMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private int timespeed = 0;
 
     private TaskBroker taskBrokerScript;
@@ -41,6 +42,17 @@ public class Clock : MonoBehaviour {
                 if (hours == 24)
                 {
                     hours = 0;
+                    days++;
+                    if (days > lenghtOfMonth[months])
+                    {
+                        days = 1;
+                        months++;
+                        if (months == 13)
+                        {
+                            months = 1;
+                            years++;
+                        }
+                    }
                 }
             }
             UpdateClockDisplay();
